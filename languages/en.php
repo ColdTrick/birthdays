@@ -2,7 +2,7 @@
 
 	$english = array(
 		// general stuff
-		'birthdays:no_field_configured' => "No bithday field configured yet, please ask you site administrator to configure the plugin",
+		'birthdays:no_field_configured' => "No birthday field configured yet, please ask you site administrator to configure the plugin",
 		'birthdays:more' => "More birthdays",
 		'birthdays:none' => "No birthdays found",
 		

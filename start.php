@@ -24,7 +24,7 @@
 		elgg_extend_view("user/status", "birthdays/user_status", 600);
 		
 		// add widget
-		elgg_register_widget_type("birthdays", elgg_echo("birtdays:widget:title"), elgg_echo("birthdays:widget:description"), "profile,dashboard,groups,index");
+		elgg_register_widget_type("birthdays", elgg_echo("birthdays:widget:title"), elgg_echo("birthdays:widget:description"), "profile,dashboard,groups,index");
 		
 		// add group option to show birthdays
 		add_group_tool_option("birthdays", elgg_echo("birthdays:groups:options"), false);

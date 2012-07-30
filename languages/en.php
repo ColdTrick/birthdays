@@ -37,8 +37,9 @@
 		'birthdays:sidebar:datepicker:title' => "Show birthdays on",
 		
 		// widget
-		'birtdays:widget:title' => "Birthdays",
-		'birtdays:widget:description' => "Shows the birthdays of everyone, your friends or group members",
+		'birthdays:widget:title' => "Birthdays",
+		'birthdays:widget:description' => "Shows the birthdays of everyone, your friends or group members",
+		'birthdays:widget:settings:who_to_show' => "Who should appear in the widget?",
 		
 		// groups
 		'birthdays:groups:options' => "Show the birthdays of the group members",

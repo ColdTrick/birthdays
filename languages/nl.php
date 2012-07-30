@@ -16,8 +16,9 @@ $language = array (
   'birthdays:page:upcoming:title' => 'Binnenkort jarig',
   'birthdays:page:group:title' => 'Verjaardagen van %s\'s leden',
   'birthdays:sidebar:datepicker:title' => 'Toon verjaardagen op',
-  'birtdays:widget:title' => 'Verjaardagen',
-  'birtdays:widget:description' => 'Toon de verjaardagen van iedereen, je vrienden of van groepsleden',
+  'birthdays:widget:title' => 'Verjaardagen',
+  'birthdays:widget:description' => 'Toon de verjaardagen van iedereen, je vrienden of van groepsleden',
+'birthdays:widget:settings:who_to_show' => "Wie moeten er in de widget worden getoond?",
   'birthdays:groups:options' => 'Toon de verjaardagen van de groepsleden',
   'birthdays:groups:not_enabled' => 'Weergave van verjaardagen is niet ingeschakeld voor deze groep',
 );

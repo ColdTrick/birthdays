@@ -1,0 +1,9 @@
+= Version history =
+
+x.x:
+
+- changed: better prevention of wrong date formats
+
+1.0 (2012-07-26):
+
+- first release

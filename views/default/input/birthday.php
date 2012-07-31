@@ -1,14 +1,37 @@
 <?php
-
 	/**
-	 * This is a wrapper view for input/date, to be sure when something changes in Elgg core you don't have to change your profile configuration
-	 * 
-	 * @uses $vars['value'] 	the value of the bithday field
-	 * @uses $vars['name'] 		the name of the birthday field
-	 * @uses $vars['class'] 	additional classes for the birthday field
-	 * 
-	 * Values are saved in the format yyyy-mm-dd
+	 * Elgg date input
+	 * Displays a text field with a popup date picker.
+	 *
+	 * The elgg.ui JavaScript library initializes the jQueryUI datepicker based
+	 * on the CSS class .elgg-input-birthday. It uses the ISO 8601 standard for date
+	 * representation: yyyy-mm-dd.
+	 *
+	 * @uses $vars['value']     The current value, if any (as a unix timestamp)
+	 * @uses $vars['class']     Additional CSS class
 	 * 
 	 */
-
-	echo elgg_view("input/date", $vars);
+	
+	if (isset($vars['class'])) {
+		$vars['class'] = "elgg-input-birthday {$vars['class']}";
+	} else {
+		$vars['class'] = "elgg-input-birthday";
+	}
+	
+	$defaults = array(
+		'value' => '',
+		'disabled' => false,
+	);
+	
+	$vars = array_merge($defaults, $vars);
+	
+	// convert timestamps to text for display
+	if (is_numeric($vars['value'])) {
+		$vars['value'] = gmdate('Y-m-d', $vars['value']);
+	}
+	
+	$vars["type"] = "text";
+	$vars["readonly"] = "readonly";
+	
+	$attributes = elgg_format_attributes($vars);
+	echo "<input $attributes />";

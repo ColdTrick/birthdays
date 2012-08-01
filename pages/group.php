@@ -33,8 +33,6 @@
 		"relationship" => "member",
 		"relationship_guid" => $page_owner->getGUID(),
 		"inverse_relationship" => true,
-		"limit" => 6,
-		"offset" => 0,
 		"metadata_name_value_pairs" => array(
 			"name" => $field_name,
 			"value" => "",
@@ -43,6 +41,17 @@
 		"selects" => array(
 			"DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR AS currbirthday"
 		),
+		"wheres" => array(
+			"((((DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) > NOW()) 
+			AND 
+			(DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) BETWEEN NOW() AND NOW() + INTERVAL 3 MONTH)
+			
+			OR 
+			
+			(((DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) < NOW()) 
+			AND 
+			(DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 1 YEAR) BETWEEN NOW() AND NOW() + INTERVAL 3 MONTH)
+			)"),
 		"order_by" => "CASE WHEN currbirthday < NOW() THEN currbirthday + INTERVAL 1 YEAR ELSE currbirthday END",
 		"full_view" => false,
 		"pagination" => false

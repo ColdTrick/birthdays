@@ -3,6 +3,7 @@
 x.x:
 
 - changed: better prevention of wrong date formats
+- changed: limited upcomming birthdays to the next 3 months
 
 1.0 (2012-07-26):
 

@@ -5,7 +5,8 @@
 	if(elgg_instanceof($group, "group") && ($group->birthdays_enable == "yes")){
 		$more_link = "";
 		
-		if($field_name = birthdays_get_configured_birthday_field()){
+		// get basic options
+		if($options = birthdays_get_basic_selection_options()){
 			// more link
 			$more_link = elgg_view("output/url", array(
 				"text" => elgg_echo("birthdays:more"),
@@ -13,36 +14,12 @@
 			));
 			
 			// set options
-			$options = array(
-				"type" => "user",
-				"relationship" => "member",
-				"relationship_guid" => $group->getGUID(),
-				"inverse_relationship" => true,
-				"limit" => 6,
-				"offset" => 0,
-				"metadata_name_value_pairs" => array(
-					"name" => $field_name,
-					"value" => "",
-					"operand" => "<>"
-				),
-				"selects" => array(
-					"DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR AS currbirthday"
-				),
-				"wheres" => array(
-					"((((DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) > NOW()) 
-					AND 
-					(DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) BETWEEN NOW() AND NOW() + INTERVAL 3 MONTH)
-					
-					OR 
-					
-					(((DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) < NOW()) 
-					AND 
-					(DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 1 YEAR) BETWEEN NOW() AND NOW() + INTERVAL 3 MONTH)
-					)"),
-				"order_by" => "CASE WHEN currbirthday < NOW() THEN currbirthday + INTERVAL 1 YEAR ELSE currbirthday END",
-				"full_view" => false,
-				"pagination" => false
-			);
+			$options["relationship"] = "member";
+			$options["relationship_guid"] = $group->getGUID();
+			$options["inverse_relationship"] = true;
+			$options["limit"] = 6;
+			$options["offset"] = 0;
+			$options["pagination"] = false;
 			
 			// set correct context
 			elgg_push_context("birthdays");

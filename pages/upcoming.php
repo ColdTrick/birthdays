@@ -5,9 +5,8 @@
 	 * 
 	 */
 
-	// do we know which field contains birthdays
-	if(!($field_name = birthdays_get_configured_birthday_field())){
-		register_error(elgg_echo("birthdays:no_field_configured"));
+	// can we get the basic selection options
+	if(!($options = birthdays_get_basic_selection_options(true))){
 		forward(REFERER);
 	}
 	
@@ -17,33 +16,10 @@
 	// build page elements
 	$title_text = elgg_echo("birthdays:page:upcoming:title");
 	
-	$options = array(
-		"type" => "user",
-		"relationship" => "member_of_site",
-		"relationship_guid" => elgg_get_site_entity()->getGUID(),
-		"inverse_relationship" => true,
-		"metadata_name_value_pairs" => array(
-			"name" => $field_name,
-			"value" => "",
-			"operand" => "<>"
-		),
-		"selects" => array(
-			"DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR AS currbirthday"
-		),
-		"wheres" => array(
-			"((((DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) > NOW()) 
-			AND 
-			(DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) BETWEEN NOW() AND NOW() + INTERVAL 3 MONTH)
-			
-			OR 
-			
-			(((DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) < NOW()) 
-			AND 
-			(DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 1 YEAR) BETWEEN NOW() AND NOW() + INTERVAL 3 MONTH)
-			)"),
-		"order_by" => "CASE WHEN currbirthday < NOW() THEN currbirthday + INTERVAL 1 YEAR ELSE currbirthday END",
-		"full_view" => false,
-	);
+	// make sure we have the correct relationship
+	$options["relationship"] = "member_of_site";
+	$options["relationship_guid"] = elgg_get_site_entity()->getGUID();
+	$options["inverse_relationship"] = true;
 	
 	if(!($listing = elgg_list_entities_from_relationship($options))){
 		$listing = elgg_echo("birthdays:none");

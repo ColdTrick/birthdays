@@ -1,6 +1,7 @@
 <?php
 
-	if($field_name = birthdays_get_configured_birthday_field()){
+	// get basic selection options
+	if($options = birthdays_get_basic_selection_options()){
 	
 		$widget = elgg_extract("entity", $vars);
 		$owner = $widget->getOwnerEntity();
@@ -11,33 +12,9 @@
 			$num_display = 10;
 		}
 		
-		$options = array(
-			"type" => "user",
-			"limit" => $num_display,
-			"offset" => 0,
-			"metadata_name_value_pairs" => array(
-				"name" => $field_name,
-				"value" => "",
-				"operand" => "<>"
-			),
-			"selects" => array(
-				"DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR AS currbirthday"
-			),
-			"wheres" => array(
-				"((((DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) > NOW()) 
-				AND 
-				(DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) BETWEEN NOW() AND NOW() + INTERVAL 3 MONTH)
-				
-				OR 
-				
-				(((DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) < NOW()) 
-				AND 
-				(DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 1 YEAR) BETWEEN NOW() AND NOW() + INTERVAL 3 MONTH)
-				)"),
-			"order_by" => "CASE WHEN currbirthday < NOW() THEN currbirthday + INTERVAL 1 YEAR ELSE currbirthday END",
-			"full_view" => false,
-			"pagination" => false
-		);
+		$options["limit"] = $num_display;
+		$options["offset"] = 0;
+		$options["pagination"] = false;
 		
 		switch($widget->context){
 			case "groups":

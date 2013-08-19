@@ -5,17 +5,21 @@
 	require_once(dirname(__FILE__) . "/lib/page_handlers.php");
 	
 	function birthdays_init(){
-		// add custom profile field type
-		$profile_options = array(
-			"show_on_register" => true,
-			"mandatory" => true,
-			"user_editable" => true,
-			"output_as_tags" => false,
-			"admin_only" => true,
-			"count_for_completeness" => true
-		);
 		
-		add_custom_field_type("custom_profile_field_types", "birthday", elgg_echo("brithdays:profile_field:type"), $profile_options);
+		if (elgg_is_active_plugin("profile_manager")) {
+			// add custom profile field type
+			// only works with Profile Manager active
+			$profile_options = array(
+				"show_on_register" => true,
+				"mandatory" => true,
+				"user_editable" => true,
+				"output_as_tags" => false,
+				"admin_only" => true,
+				"count_for_completeness" => true
+			);
+			
+			add_custom_field_type("custom_profile_field_types", "birthday", elgg_echo("brithdays:profile_field:type"), $profile_options);
+		}
 		
 		// register page handler for nice URL's
 		elgg_register_page_handler("birthdays", "birthdays_page_handler");

@@ -1,10 +1,16 @@
 = Version history =
 
+x.x:
+
+- fixed: crash when profile_manager is not active
+
 1.0.1 (2013-04-05):
+
 - changed: better prevention of wrong date formats
 - changed: limited upcomming birthdays to the next 3 months
 - changed: standarised selection options for birthdays
 - changed: upcomming birthdays now includes today
 
 1.0 (2012-07-26):
+
 - first release

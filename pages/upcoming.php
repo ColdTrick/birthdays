@@ -2,7 +2,7 @@
 
 	/**
 	 * This page will display all the upcoming birthdays off all the users
-	 * 
+	 *
 	 */
 
 	// can we get the basic selection options

@@ -55,6 +55,11 @@
 		$result = false;
 		
 		if($field_name = birthdays_get_configured_birthday_field()){
+			$interval = 3;
+			if (elgg_get_plugin_setting("limit_upcoming", "birthdays") == "no") {
+				$interval = 12;
+			}
+			
 			$result = array(
 				"type" => "user",
 				"metadata_name_value_pairs" => array(
@@ -66,15 +71,15 @@
 					"DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR AS currbirthday"
 				),
 				"wheres" => array(
-					"((((DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) >= DATE(NOW())) 
-					AND 
-					(DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) BETWEEN DATE(NOW()) AND DATE(NOW()) + INTERVAL 3 MONTH)
+					"((((DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) >= DATE(NOW()))
+					AND
+					(DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) BETWEEN DATE(NOW()) AND DATE(NOW()) + INTERVAL $interval MONTH)
 					
-					OR 
+					OR
 					
-					(((DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) < DATE(NOW())) 
-					AND 
-					(DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 1 YEAR) BETWEEN DATE(NOW()) AND DATE(NOW()) + INTERVAL 3 MONTH)
+					(((DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 0 YEAR) < DATE(NOW()))
+					AND
+					(DATE(msv1.string) + INTERVAL(YEAR(NOW()) - YEAR(DATE(msv1.string))) + 1 YEAR) BETWEEN DATE(NOW()) AND DATE(NOW()) + INTERVAL $interval MONTH)
 					)"),
 				"order_by" => "CASE WHEN currbirthday < DATE(NOW()) THEN currbirthday + INTERVAL 1 YEAR ELSE currbirthday END",
 				"full_view" => false

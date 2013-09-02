@@ -21,10 +21,15 @@
 		'brithdays:profile_field:type' => "Birthday",
 		
 		// settings
+		'birthdays:settings:field_selection' => "Profile field",
 		'birthdays:settings:field_selection:description' => "Please select the profile field which contains the birthday of your users.",
 		'birthdays:settings:field_selection:none' => "Disable displaying of birthdays",
 		
+		'birthdays:settings:output_format' => "Output format",
 		'birthdays:settings:output_format:description' => "Here you can control the output format of the birthday fields.",
+
+		'birthdays:settings:other' => "Other",
+		'birthdays:settings:other:limit_upcoming' => "Should 'upcoming birthdays' be limited by max 3 months in advance?",
 		
 		// page titles
 		'birthdays:page:day:title' => "Birthdays on: %s",

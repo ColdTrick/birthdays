@@ -1,7 +1,8 @@
 = Version history =
 
-x.x:
+1.1 (2013-09-02):
 
+- added: settings to unlimit upcoming birthdays lists
 - fixed: crash when profile_manager is not active
 
 1.0.1 (2013-04-05):

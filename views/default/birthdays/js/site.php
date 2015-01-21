@@ -18,7 +18,6 @@ elgg.birthday.init = function(){
 			}
 		});
 	}
-}
-
+};
 
 elgg.register_hook_handler('init', 'system', elgg.birthday.init);

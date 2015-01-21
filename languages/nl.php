@@ -1,5 +1,5 @@
 <?php
-$language = array (
+return array (
   'birthdays:settings:field_selection' => 'Profiel veld',
   'birthdays:settings:output_format' => 'Weergave',
   'birthdays:settings:other' => 'Overige',
@@ -26,4 +26,3 @@ $language = array (
   'birthdays:groups:options' => 'Toon de verjaardagen van de groepsleden',
   'birthdays:groups:not_enabled' => 'Weergave van verjaardagen is niet ingeschakeld voor deze groep',
 );
-add_translation("nl", $language);

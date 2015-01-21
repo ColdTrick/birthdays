@@ -1,6 +1,6 @@
 <?php
 
-$english = array(
+return array(
 	// general stuff
 	'birthdays:no_field_configured' => "No birthday field configured yet, please ask you site administrator to configure the plugin",
 	'birthdays:more' => "More birthdays",
@@ -50,5 +50,3 @@ $english = array(
 	'birthdays:groups:options' => "Show the birthdays of the group members",
 	'birthdays:groups:not_enabled' => "Birthday listing is not enabled for this group",
 );
-
-add_translation("en", $english);

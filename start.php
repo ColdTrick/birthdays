@@ -27,7 +27,7 @@ function birthdays_init() {
 			"count_for_completeness" => true
 		);
 		
-		add_custom_field_type("custom_profile_field_types", "birthday", elgg_echo("brithdays:profile_field:type"), $profile_options);
+		profile_manager_add_custom_field_type("custom_profile_field_types", "birthday", elgg_echo("brithdays:profile_field:type"), $profile_options);
 	}
 	
 	// register page handler for nice URL's
@@ -38,7 +38,7 @@ function birthdays_init() {
 	elgg_extend_view("js/elgg", "birthdays/js/site");
 	
 	// add widget
-	elgg_register_widget_type("birthdays", elgg_echo("birthdays:widget:title"), elgg_echo("birthdays:widget:description"), "profile,dashboard,groups,index");
+	elgg_register_widget_type("birthdays", elgg_echo("birthdays:widget:title"), elgg_echo("birthdays:widget:description"), array("profile", "dashboard", "groups", "index"));
 	
 	// add group option to show birthdays
 	add_group_tool_option("birthdays", elgg_echo("birthdays:groups:options"), false);

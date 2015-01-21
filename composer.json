@@ -1,0 +1,11 @@
+{
+	"name": "coldtrick/birthdays",
+	"description": "Shows the birthdays of your community users",
+	"type": "elgg-plugin",
+	"keywords": ["elgg", "plugin", "tools", "social"],
+	"license": "GPL-2.0",
+	"support": {
+		"source": "https://github.com/ColdTrick/birthdays",
+		"issues": "https://github.com/ColdTrick/birthdays/issues"
+	}
+}

@@ -45,9 +45,9 @@ if ($options = birthdays_get_basic_selection_options()) {
 	if ($listing = elgg_list_entities_from_relationship($options)) {
 		
 		if (elgg_instanceof($owner, "group")) {
-			$more_url = $vars["url"] . "birthdays/group/" . $owner->getGUID() . "/all";
+			$more_url = "birthdays/group/" . $owner->getGUID() . "/all";
 		} else {
-			$more_url = $vars["url"] . "birthdays";
+			$more_url = "birthdays";
 		}
 		
 		$listing .= "<div class='elgg-widget-more'>";

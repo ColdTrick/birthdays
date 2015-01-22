@@ -1,6 +1,10 @@
 Version history
 ===============
 
+2.0.1 (2015-01-22):
+
+- fixed: deprecation notice
+
 2.0 (2015-01-22):
 
 - changes for Elgg 1.9
